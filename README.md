@@ -75,7 +75,7 @@ For training the system on your own dataset, download the [initial ImageNet weig
 
 All weight files (.caffemodel) should be moved into the `params` subdirectory.
 
-## Download segmentations
+## Creating segmentations
 Essential to our superpixel-based refinement system are the superpixel segmentations. We generated and optimized all superpixel segmentations using the [framework by Stutz et al](https://github.com/davidstutz/superpixel-benchmark). For training and testing eight segmentations needs to be generated per image, one segmentation per AttentionMask scale. 
 
 Due to the size we will not provide the segmentations. However, the segmentations used in the paper can be reproduced  using the [framework by Stutz et al](https://github.com/davidstutz/superpixel-benchmark). Follow the instalation insturctions in that repo. Note that only the segmentation algorithm by Felzenszwalb and Huttenlocher has to be build. The following table provides the parameters (`scale (-t)`, `minimum-size (-m)`, `sigma (-g)` in the framework by Stutz et al.) for generating the segmentations for each of the eight scales in AttentionMask.
@@ -90,6 +90,8 @@ Due to the size we will not provide the segmentations. However, the segmentation
 | 64 | 30 | 90 | 1 |
 | 96 | 60 | 120 | 1 |
 | 128 | 10 | 180 | 0 |
+
+The segmentation size, i.e., the image size during segmentation, as well information about flipping the image and the segmentation (training only) can be found in the following json files for [training data](https://fbicloud.informatik.uni-hamburg.de/index.php/s/xoRpzTWxcDB9NWM) and [test data](https://fbicloud.informatik.uni-hamburg.de/index.php/s/jgcTeZzeqRFbDLx). The json files contain a mapping from the image id to the height and width of the segmentation as well as a flag for denoting a left-right-flip (training only).
 
 ### Segmentations for training
 For training, the segmentations have to be provided in two different ways. First, all segmentations are expected as compressed csv-file (``csv.gz``) in the subdirectory ``segmentations/train2014/`` with an indidividual folder per scale. Additionally, from those segmentations the superpixelized ground truth needs to be generated as ``json``-file with scipt ``generateSpxJson.py`` followed by the script ``splitJson.py``. Generate the segmentations using the [framework by Stutz et al.](https://github.com/davidstutz/superpixel-benchmark) and the parameters discussed above and  paste the results into the directory structure shown below.
