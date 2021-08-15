@@ -65,6 +65,8 @@ def f(img_id):
         return []
     loaded = np.load('./intermediateResults/image_'+str(img_id)+'.npz')
     img = imread('./data/coco/val2017LVIS/COCO_val2017LVIS_'+str(img_id).zfill(12)+'.jpg').astype(np.float)/255.0
+    if len(img.shape) == 2:
+        img = np.dstack([img]*3)
 
     img = cv2.resize(img.astype(np.float), (loaded['seg8'].shape[1],loaded['seg8'].shape[0]))
 
