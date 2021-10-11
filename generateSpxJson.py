@@ -84,7 +84,7 @@ dataset = COCO_DS('./data/coco/annotations/instances_train2014.json', True)
 
 #parallel processing of the annotations
 pool = Pool(processes=6) 
-result = pool.map(f, dataset.anns.values()[-100:])
+result = pool.map(f, dataset.anns.values())
 result = filter(lambda x:x!=(), result)
 print len(result)
 overallResultDict = dict(result)
