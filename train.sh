@@ -14,4 +14,5 @@ do
         let STEP=EPOCH*SIZE_EPOCH
         python trainSpxRefinedAttMask.py 0 spxRefinedAttMask --restore spxRefinedAttMask_iter_$STEP_OLD.solverstate --step 80000
     fi
+    let EPOCH=EPOCH+1
 done
